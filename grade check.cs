@@ -4,42 +4,46 @@ class Program
 {
     static void Main(string[] args)
     {
+        string letter = "";
+
         Console.Write("Enter your grade percentage: ");
         int grade = int.Parse(Console.ReadLine());
 
         if (grade >= 90)
         {
-            Console.WriteLine("A");
+            letter = "A";
         }
 
         else if (grade >= 80)
         {
-            Console.WriteLine("B");
+            letter = "B";
         }
 
        else if (grade >= 70)
         {
-            Console.WriteLine("C");
+            letter = "C";
         }
 
         else if (grade >= 60)
         {
-            Console.WriteLine("D");
+            letter = "D";
         }
-
+        
         else
         {
-            Console.WriteLine("E");
+            letter = "F";;
         }
+
+        Console.WriteLine("letter grade: " + letter);
 
         if (grade >= 70)
         {
-            Console.WriteLine("Congratulations!");
+            Console.WriteLine("Congratulations! You passed the course!");
         }
 
         else
         {
-            Console.WriteLine("Better luck next time!");
+            Console.WriteLine("You didn't pass the course. Better luck next time!");
         }
     }
 

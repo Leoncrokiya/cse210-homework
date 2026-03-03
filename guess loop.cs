@@ -7,18 +7,18 @@ class Program
         Console.Write("Whatt's the magic number? ");
         int num = int.Parse(Console.ReadLine());
 
-        Console.Write("What's your guess?");
+        Console.Write("What's your guess? ");
         int guess = int.Parse(Console.ReadLine());
 
         while (guess != num)
         {
             if (guess > num)
             {
-                Console.Write("Lower: ");
+                Console.WriteLine("Lower");
             }
             else
             {
-                Console.Write("Higher: ");
+                Console.WriteLine("Higher");
             }
 
             Console.Write("What's your guess? ");
