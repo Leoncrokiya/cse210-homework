@@ -4,24 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Exercise1 Project.");
+        Console.Write("What is your first name? ");
+        string first = Console.ReadLine();
 
-        int x = 5;
-        int y = 7;
-        
-        if (x > y)
-        {
-            Console.WriteLine("Greater");
-        }
-        
-        else if (x < y)
-        {
-            Console.WriteLine("Less");
-        }
-        
-        else
-        {
-            Console.WriteLine("Equal");
-        }
+        Console.Write("What is your last name? ");
+        string last = Console.ReadLine();
+
+        Console.WriteLine($"Your name is {last}, {first} {last}.");
     }
 }
