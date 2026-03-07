@@ -1,47 +1,48 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 class Program
 {
     static void Main(string[] args)
     {
-        List<int> list = new List<int>();
+        DisplayWelcomeMessage();
 
-        Console.WriteLine("Enter a list of numbers, type 0 to stop.");
+        string userName = PromptUserName();
+        int userNumber = PromptUserNumber();
 
-        Console.Write("Enter a number: ");
-        int num = int.Parse(Console.ReadLine());
+        int squaredNumber = SquareNumber(userNumber);
 
-        while (num != 0)
-        {
-            list.Add(num);
-            
-            Console.Write("Enter a number: ");
-            num = int.Parse(Console.ReadLine());
-        }
+        DisplayResult(userName, squaredNumber);
+    }
 
-        if (list.Count > 0)
-        {
-            int sum = 0;
-            int max = int.MinValue;
-            
-            foreach (int n in list)
-            {
-                sum += n;
-                if (n > max)
-                {
-                    max = n;
-                }
-            }
-            
-            double average = (double)sum / list.Count;
+    static void DisplayWelcomeMessage()
+    {
+        Console.WriteLine("Welcome to the program!");
+    }
 
-            Console.WriteLine($"The sum is: {sum}");
-            Console.WriteLine($"The average is: {average}");
-            Console.WriteLine($"The max is: {max}");
-        }
+    static string PromptUserName()
+    {
+        Console.Write("Please enter your name: ");
+        string name = Console.ReadLine();
 
-    }   
+        return name;
+    }
 
+    static int PromptUserNumber()
+    {
+        Console.Write("Please enter your favorite number: ");
+        int number = int.Parse(Console.ReadLine());
+
+        return number;
+    }
+
+    static int SquareNumber(int number)
+    {
+        int square = number * number;
+        return square;
+    }
+
+    static void DisplayResult(string name, int square)
+    {
+        Console.WriteLine($"{name}, the square of your number is {square}");
+    }
 }
