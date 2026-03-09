@@ -1,25 +1,27 @@
 using System;
 
-public class Job
+class Program
 {
-    string _jobTitle = "Software Engineer";
-    string _company = "Tech Company";
-    string _firstName;
-
-    string _lastName;
-
-    int _startYear = 2020;
-    int _endYear = 2023;
-
-    public Job()
+    static void Main(string[] args)
     {
-        Console.Write("First Name: ");
-        _firstName = Console.ReadLine();
-        Console.Write("Last Name: ");
-        _lastName = Console.ReadLine();
+        Job job1 = new Job();
+        job1._jobTitle = "Software Engineer";
+        job1._company = "Google";
+        job1._startYear = 2021;
+        job1._endYear = 2023;
 
-        Console.WriteLine($"Name: {_firstName} {_lastName}"); //n: l c
-        Console.WriteLine($"Jobs:"); // j:
-        Console.WriteLine($"{_jobTitle} ({_company}) {_startYear}-{_endYear}"); // se (m) 19-22
+        Job job2 = new Job();
+        job2._jobTitle = "Data Analyst";
+        job2._company = "Amazon";
+        job2._startYear = 2023;
+        job2._endYear = 2025;
+
+        Resume myResume = new Resume();
+        myResume._name = "Leon Crokiya";
+
+        myResume._jobs.Add(job1);
+        myResume._jobs.Add(job2);
+
+        myResume.DisplayResume();
     }
 }
