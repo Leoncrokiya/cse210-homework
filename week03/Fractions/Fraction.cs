@@ -7,8 +7,8 @@ public class Fraction
 
     public Fraction()
     {
-        int numberator = 1;
-        int denominator = 1;
+        numerator = 1;
+        denominator = 1;
     }
 
     public Fraction(int wholeNumber)
