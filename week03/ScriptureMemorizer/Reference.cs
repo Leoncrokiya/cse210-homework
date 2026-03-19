@@ -1,25 +1,30 @@
 public class Reference
 {
     private string _book;
-    private string _chapter;
-    private string _verse;
+    private int _chapter;
+    private int _verse;
     private int _endVerse;
 
     public Reference(string book, int chapter, int verse)
     {
-        
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+        _endVerse = verse; // Default endVerse to start verse
     }
 
     public Reference(string book, int chapter, int verse, int endVerse)
     {
         _book = book;
-        _chapter = chapter.ToString();
-        _verse = verse.ToString();
+        _chapter = chapter;
+        _verse = verse;
         _endVerse = endVerse;
     }
 
     public string GetDisplayText()
     {
-        return $"{_book} {_chapter}:{_verse}";
+        return _verse == _endVerse 
+            ? $"{_book} {_chapter}:{_verse}" 
+            : $"{_book} {_chapter}:{_verse}-{_endVerse}";
     }
 }
