@@ -15,9 +15,12 @@ class Program
             Console.WriteLine("3. Listing Activity");
             Console.WriteLine("4. Quit");
             Console.Write("Select an option: ");
+
+            // Choices are in integer format instead of string to make it easier to validate user input
             int choice = int.Parse(Console.ReadLine());
             Console.WriteLine();
         
+            // Validates user input
             while (choice < 1 || choice > 4)
             {
                 Console.Write("Enter Valid option: ");

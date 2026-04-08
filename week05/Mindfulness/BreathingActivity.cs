@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace Mindfulness
 {
@@ -7,6 +8,7 @@ namespace Mindfulness
         public BreathingActivity()
         {
             _name = "Breathing Activity";
+            _description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
         }
 
         public void Run()
@@ -14,31 +16,22 @@ namespace Mindfulness
             DisplayStartingMessage();
             Console.WriteLine();
 
-            Console.WriteLine("Inhale...");
-            ShowCountDown(4);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            Console.WriteLine("Exhale...");
-            ShowCountDown(4);
+            while (stopwatch.Elapsed.TotalSeconds < _duration)
+            {
+                Console.WriteLine("Inhale...");
+                ShowCountDown(4);
 
-            Console.WriteLine("Inhale...");
-            ShowCountDown(4);
+                if (stopwatch.Elapsed.TotalSeconds >= _duration)
+                    break;
 
-            Console.WriteLine("Exhale...");
-            ShowCountDown(4);
+                Console.WriteLine("Exhale...");
+                ShowCountDown(4);
+            }
 
-            Console.WriteLine("Inhale...");
-            ShowCountDown(4);
-
-            Console.WriteLine("Exhale...");
-            ShowCountDown(4);
-
-            Console.WriteLine("Inhale...");
-            ShowCountDown(4);
-
-            Console.WriteLine("Exhale...");
-            ShowCountDown(4);
             Console.WriteLine();
-
             DisplayEndingMessage();
         }
     }

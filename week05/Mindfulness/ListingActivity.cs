@@ -5,8 +5,8 @@ namespace Mindfulness
 {
     public class ListingActivity : Activity
     {
-        private int _count = 0;
-        private List<string> _prompts = new List<string>();
+        protected int _count = 0;
+        protected List<string> _prompts = new List<string>();
 
         public void Run()
         {

@@ -5,8 +5,8 @@ namespace Mindfulness
 {
     public class ReflectingActivity : Activity
     {
-        private List<string> _prompts = new List<string>();
-        private List<string> _questions = new List<string>();
+        protected List<string> _prompts = new List<string>();
+        protected List<string> _questions = new List<string>();
 
         public ReflectingActivity()
         {
