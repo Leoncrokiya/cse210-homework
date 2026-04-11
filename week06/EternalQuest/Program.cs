@@ -4,6 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the EternalQuest Project.");
+        Console.WriteLine($"You have {_score} points.");
+        Console.WriteLine();
+        
+        GoalManager goalManager = new GoalManager();
     }
 }
