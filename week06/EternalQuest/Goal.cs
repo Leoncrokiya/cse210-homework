@@ -2,13 +2,12 @@ using System;
 
 namespace EternalQuest
 {
-    public class Goal()
+    public abstract class Goal
     {
-        private string _shortName = "";
-        private string _description = "";
-        private string _points = "";
+        protected string _shortName = "";
+        protected string _description = "";
+        protected string _points = "";
 
-        
         public Goal(string name, string description, string points)
         {
             _shortName = name;
@@ -16,24 +15,25 @@ namespace EternalQuest
             _points = points;
         }
 
-        public abstract void RecordEvent()
+        public abstract int RecordEvent();
+        // {
+        //     return;
+        // }
+
+        public abstract bool IsComplete();
+        // {
+        //     return false;
+        // }
+
+        public virtual string GetDetailsString()
         {
-            
+            string statusSymbol = IsComplete() ? "[X]" : "[ ]";
+            return $"{statusSymbol} {_shortName} - {_description}";
         }
 
-        public abstract bool IsComplete()
-        {
-            
-        }
-
-        public string GetDetailsString()
-        {
-            
-        }
-
-        public abstract string GetStringRepresentation()
-        {
-            
-        }
+        public abstract string GetStringRepresentation();
+        // {
+        //     return $"{_shortName} - {_description} - {_points}";
+        // }
     }
 }
