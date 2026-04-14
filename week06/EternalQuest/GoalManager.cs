@@ -37,7 +37,7 @@ public class GoalManager
 
         else
         {
-            Console.WriteLine("Your goals:");
+            Console.WriteLine("Your goals: ");
 
             foreach (Goal goal in _goals)
             {
@@ -143,14 +143,39 @@ public class GoalManager
     {
         Console.Write("What's the filename for the goal file?: ");
         string fileName = Console.ReadLine();
-        string[] lines = System.IO.File.ReadAllLines(fileName);
+
+        while (!File.Exists(fileName))
+        {
+            Console.WriteLine("File not found.");
+            return;
+        }
+        
+        string[] lines = File.ReadAllLines(fileName);
+        if (lines.Length == 0)
+        {
+            Console.WriteLine("Save file is empty.");
+            return;
+        }
 
         _goals.Clear();
-        _score = int.Parse(lines[0]);
+
+        string firstLine = lines[0];
+        string[] scoreParts = firstLine.Split(" ~ ");
+
+        if (int.TryParse(scoreParts[scoreParts.Length - 1], out int parsedScore))
+        {
+            _score = parsedScore;
+        }
 
         for (int i = 1; i < lines.Length; i++)
         {
-            string[] part = lines[i].Split(new[] {": "}, 2, StringSplitOptions.None);
+            string line = lines[i].Trim();
+            if (string.IsNullOrEmpty(line))
+            {
+                continue;
+            }
+
+            string[] part = line.Split(new[] {": "}, 2, StringSplitOptions.None);
             if (part.Length < 2)
             {
                 continue;
@@ -158,25 +183,32 @@ public class GoalManager
 
             string type = part[0];
             string[] data = part[1].Split(" ~ ");
+            for (int j = 0; j < data.Length; j++)
+            {
+                data[j] = data[j];
+            }
 
-            if (type == "SimpleGoal")
+            try
             {
-                bool isComplete = bool.Parse(data[3]);
-                SimpleGoal goal = new SimpleGoal(data[0], data[1], int.Parse(data[2]), isComplete);
-                _goals.Add(goal);
+                if (type == "SimpleGoal" && data.Length >= 4)
+                {
+                    _goals.Add(new SimpleGoal(data[0], data[1], int.Parse(data[2]), bool.Parse(data[3])));
+                }
+
+                else if (type == "EternalGoal" && data.Length >= 3)
+                {
+                    _goals.Add(new EternalGoal(data[0], data[1], int.Parse(data[2])));
+                }
+
+                else
+                {
+                    _goals.Add(new ChecklistGoal(data[0], data[1], int.Parse(data[2]), int.Parse(data[3]), int.Parse(data[4]), int.Parse(data[5])));
+                }
             }
-            else if (type == "EternalGoal")
+            
+            catch (Exception ex)
             {
-                EternalGoal goal = new EternalGoal(data[0], data[1], int.Parse(data[2]));
-                _goals.Add(goal);
-            }
-            else if (type == "ChecklistGoal")
-            {
-                int amountCompleted = int.Parse(data[3]);
-                int target = int.Parse(data[4]);
-                int bonus = int.Parse(data[5]);
-                ChecklistGoal goal = new ChecklistGoal(data[0], data[1], int.Parse(data[2]), target, bonus, amountCompleted);
-                _goals.Add(goal);
+                Console.WriteLine($"Skipping line {i+1}: {ex.Message}");
             }
         }
     }

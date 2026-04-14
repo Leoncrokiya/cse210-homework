@@ -56,11 +56,14 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 /warnaserror+:NU1605,SYSLIB0011
 
 [sourceFiles]
+Activity.cs
 obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  ExerciseTracking.AssemblyInfo.cs
  ExerciseTracking.GlobalUsings.g.cs
 Program.cs
+Running.cs
+Swimming.cs
 
 [metadataReferences]
 ../../../Program Files/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.1/ref/net10.0/
