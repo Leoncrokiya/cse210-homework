@@ -4,21 +4,25 @@ namespace ExerciseTracking
 {   
     class Running : Activity
     {
-        public Running(float distance, float speed, float pace, string date)
+        private float _distance;
+        public Running(string date, int minutes, float distance) : base(date, minutes)
         {
-            // distance = laps * 50 / 1000 * 0.62;
-            // speed = (distance / minutes) * 60;
-            // pace = minutes / distance;
-
-            _distance =distance;
-            _speed = speed;
-            _pace = pace;
-            _date = date;
+            _distance = distance;
         }
 
-        public string DisplayRunningActivity()
+        public override float GetDistance()
         {
-            return $"{_date} Running- Distance {_distance} miles, Speed {_speed} mph, Pace: {_pace} min per mile";
+            return _distance;
         }
+            
+        public override float GetSpeed() 
+        {
+            return (_distance / _minutes) * 60;
+        }
+
+        public override float GetPace()
+        {
+            return _minutes / _distance;
+        } 
     }
 }

@@ -2,23 +2,28 @@ using System;
 
 namespace ExerciseTracking
 {
-    class Swimming : Activity
+    public class Swimming : Activity
     {
-        public Swimming(float distance, float speed, float pace, string date)
-        {
-            // distance = laps * 50 / 1000 * 0.62;
-            // speed = (distance / minutes) * 60;
-            // pace = minutes / distance;
+        private int _laps;
 
-            _distance =distance;
-            _speed = speed;
-            _pace = pace;
-            _date = date;
+        public Swimming(string date, int minutes, int laps) : base(date, minutes)
+        {
+            _laps = laps;
         }
 
-        public string DisplaySwimmingActivity()
+        public override float GetDistance()
         {
-            return $"{_date} Swimming- Distance {_distance} miles, Speed {_speed} mph, Pace: {_pace} min per mile";
+            return _laps * 50f / 100f * 0.62f;
+        }
+
+        public override float GetSpeed()
+        {
+            return (GetDistance() / _minutes) * 60;
+        }
+
+        public override float GetPace()
+        {
+            return _minutes / GetDistance();
         }
     }
 }

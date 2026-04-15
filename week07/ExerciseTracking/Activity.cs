@@ -3,26 +3,24 @@ using System;
 
 namespace ExerciseTracking
 {
-    class Activity
+    public abstract class Activity
     {
-        private int _laps = 0;
-        private int _minutes = 0;
+        private string _date  = "";
+        protected int _minutes = 0;
 
-        protected float _distance = 0;
-        protected float _speed = 0;
-        protected float _pace = 0;
-        public string _date  = "";
-
-        public Activity()
+        public Activity(string date, int minutes)
         {
-            _distance = _laps * 50f / 1000f * 0.62f;
-            _speed = (_distance / _minutes) * 60;
-            _pace = _minutes / _distance;
+            _date = date;
+            _minutes = minutes;
         }
 
-        public void DisplayActivity()
+        public abstract float GetDistance();
+        public abstract float GetSpeed();
+        public abstract float GetPace();
+
+        public virtual string GetSummary()
         {
-            
+            return $"{_date} {GetType().Name} ({_minutes} min): Distance {GetDistance():0.0} miles, Speed {GetSpeed():0.0} mph, Pace: {GetPace():0.0} min per mile";
         }
     }
 }
