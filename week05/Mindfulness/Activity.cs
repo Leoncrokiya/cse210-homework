@@ -45,7 +45,7 @@ namespace Mindfulness
                 Console.Write("/");
                 Thread.Sleep(250);
                 Console.Write("\b");
-                Console.Write("-");
+                Console.Write("--");
                 Thread.Sleep(250);
                 Console.Write("\b");
                 Console.Write("\\");
